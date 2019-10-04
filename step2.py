@@ -167,30 +167,43 @@ def charger_fichier(gender):
         finally:
             csv_file.close()      
     return [[d5_poids,d5_tailles,d5_cranes],[d25_poids,d25_tailles,d25_cranes],[d50_poids,d50_tailles,d50_cranes],[d75_poids,d75_tailles,d75_cranes],[d95_poids,d95_tailles,d95_cranes]]
-
-[[d5_poids,d5_tailles,d5_cranes],[d25_poids,d25_tailles,d25_cranes],[d50_poids,d50_tailles,d50_cranes],[d75_poids,d75_tailles,d75_cranes],[d95_poids,d95_tailles,d95_cranes]]=charger_fichier("f")
-
+if genre=="f":
+    [[d5_poids,d5_tailles,d5_cranes],[d25_poids,d25_tailles,d25_cranes],[d50_poids,d50_tailles,d50_cranes],[d75_poids,d75_tailles,d75_cranes],[d95_poids,d95_tailles,d95_cranes]]=charger_fichier("f")
+if genre=="g":
+    [[d5_poids,d5_tailles,d5_cranes],[d25_poids,d25_tailles,d25_cranes],[d50_poids,d50_tailles,d50_cranes],[d75_poids,d75_tailles,d75_cranes],[d95_poids,d95_tailles,d95_cranes]]=charger_fichier("g")
 
 # Affichage des courbes de référence à faire
 
 # Affichage des mesures des poids en fonction de l'age
 fig,(fig1,fig2,fig3) = plt.subplots(1,3)
-fig1.scatter(mois,poids,label='poids mesuré',color='black')
-if genre=="f":
-    # Affiche les courbes des poinds de reference
-    fig1.plot(range(0,61),d5_poids,label='5% Poids',color='blue')
-    fig1.plot(range(0,61),d25_poids,label='25% Poids',color='orange')
-    fig1.plot(range(0,61),d50_poids,label='50% Poids',color='green')
-    fig1.plot(range(0,61),d75_poids,label='75% Poids',color='red')
-    fig1.plot(range(0,61),d95_poids,label='95% Poids',color='plum')
-    # fig1.set_xlabel=('poids')
-    # fig1.set_ylabel=('mois')
+fig1.scatter(mois,poids,color='black')
+
+# Affiche les courbes des poids de reference
+fig1.plot(range(0,61),d5_poids,label='5% Poids',color='blue')
+fig1.plot(range(0,61),d25_poids,label='25% Poids',color='orange')
+fig1.plot(range(0,61),d50_poids,label='50% Poids',color='green')
+fig1.plot(range(0,61),d75_poids,label='75% Poids',color='red')
+fig1.plot(range(0,61),d95_poids,label='95% Poids',color='plum')
+fig1.set_xlabel=('poids')
+fig1.set_ylabel=('mois')
 
 # Affichage des mesures des tailles en fonction de l'age
-fig2.scatter(mois,taille,label='taille')
+fig2.scatter(mois,taille,color='black')
+# Affiche les courbes des tailles de reference
+fig2.plot(range(0,61),d5_tailles,label='5% Tailles',color='blue')
+fig2.plot(range(0,61),d25_tailles,label='25% Tailles',color='orange')
+fig2.plot(range(0,61),d50_tailles,label='50% Tailles',color='green')
+fig2.plot(range(0,61),d75_tailles,label='75% Tailles',color='red')
+fig2.plot(range(0,61),d95_tailles,label='95% Tailles',color='plum')
 
 # Affichage des mesures des cranes en fonction de l'age
-fig3.scatter(mois,crane,label='crane')
+fig3.scatter(mois,crane,color='black')
+# Affiche les courbes des cranes de reference
+fig3.plot(range(0,61),d5_cranes,label='5% Périmètre cranien',color='blue')
+fig3.plot(range(0,61),d25_cranes,label='25% Périmètre cranien',color='orange')
+fig3.plot(range(0,61),d50_cranes,label='50% Périmètre cranien',color='green')
+fig3.plot(range(0,61),d75_cranes,label='75% Périmètre cranien',color='red')
+fig3.plot(range(0,61),d95_cranes,label='95% Périmètre cranien',color='plum')
 
 # Ajout d'un titre
 fig.suptitle('Les courbes de référence et vos mesures')
@@ -198,7 +211,7 @@ fig.suptitle('Les courbes de référence et vos mesures')
 # Localisation des legendes
 fig1.legend(loc='upper left')
 fig2.legend(loc='upper left')
-fig3.legend(loc='upper left')
+fig3.legend(loc='lower right')
 
 plt.show()
 
